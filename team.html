@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Team — NivioIndia</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/extra.css">
+</head>
+<body data-depth="0">
+
+<div id="wa-slot"></div>
+<div id="nav-slot"></div>
+
+<section class="page-head">
+  <div class="wrap">
+    <h1>Our Team</h1>
+    <p>The people leading delivery, strategy, and operations at NivioIndia.</p>
+    <div class="crumbs"><a href="index.html">Home</a><span>/</span><span style="color:#fff;">Team</span></div>
+  </div>
+</section>
+
+<section class="team-section">
+  <div class="wrap">
+    <div class="team-grid" id="teamGrid"></div>
+  </div>
+</section>
+
+<section class="cta-strip">
+  <div class="wrap">
+    <div class="cta-inner">
+      <h3>Want to join the team or work with us?</h3>
+      <a href="contact.html" class="btn btn-fill">Get In Touch <i class="fas fa-arrow-right"></i></a>
+    </div>
+  </div>
+</section>
+
+<div id="footer-slot"></div>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("teamGrid").innerHTML = TEAM.map(m => {
+    const initials = m.name.split(" ").map(n => n[0]).join("");
+    return `<div class="team-card">
+      <div class="team-avatar">${initials}</div>
+      <h4>${m.name}</h4>
+      <div class="role">${m.role}</div>
+      <p>${m.bio}</p>
+    </div>`;
+  }).join("");
+});
+</script>
+</body>
+</html>

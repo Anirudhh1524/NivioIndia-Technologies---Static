@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cloud Support — NivioIndia</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="../assets/css/base.css">
+<link rel="stylesheet" href="../assets/css/extra.css">
+</head>
+<body data-depth="1">
+
+<div id="wa-slot"></div>
+<div id="nav-slot"></div>
+
+<section class="page-head">
+  <div class="wrap">
+    <h1>Cloud Support</h1>
+    <p id="svcSummary"></p>
+    <div class="crumbs"><a href="../index.html">Home</a><span>/</span><a href="../services.html" style="color:rgba(255,255,255,.6)">Services</a><span>/</span><span style="color:#fff;">Cloud Support</span></div>
+  </div>
+</section>
+
+<section class="svc-overview">
+  <div class="wrap ov-grid">
+    <img id="svcImg" src="" alt="Cloud Support">
+    <div>
+      <span class="eyebrow">Overview</span>
+      <h2 class="h-section">How we approach cloud support.</h2>
+      <div id="svcOverview"></div>
+      <a href="../contact.html" class="btn btn-fill">Request This Service <i class="fas fa-arrow-right"></i></a>
+    </div>
+  </div>
+</section>
+
+<section class="feat-section">
+  <div class="wrap">
+    <span class="eyebrow">What's Included</span>
+    <h2 class="h-section">Core capabilities</h2>
+    <div class="feat-grid" id="svcFeatures"></div>
+  </div>
+</section>
+
+<section class="related-services">
+  <div class="wrap">
+    <span class="eyebrow">Explore More</span>
+    <h2 class="h-section">Related services</h2>
+    <div class="rel-grid" id="relGrid"></div>
+  </div>
+</section>
+
+<section class="cta-strip">
+  <div class="wrap">
+    <div class="cta-inner">
+      <h3 id="svcCtaText">Ready to bring cloud support in-house, the easy way?</h3>
+      <a href="../contact.html" class="btn btn-fill">Get Started <i class="fas fa-arrow-right"></i></a>
+    </div>
+  </div>
+</section>
+
+<div id="footer-slot"></div>
+
+<script src="../assets/js/data.js"></script>
+<script src="../assets/js/app.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const slug = "cloud-support";
+  const service = SERVICES.find(s => s.slug === slug);
+  if (!service) return;
+
+  document.getElementById("svcSummary").textContent = service.summary;
+  document.getElementById("svcImg").src = "../assets/images/" + service.img;
+  document.getElementById("svcOverview").innerHTML = service.overview.map(p => `<p>${p}</p>`).join("");
+
+  document.getElementById("svcFeatures").innerHTML = service.features.map(([icon, title, text]) => `
+    <div class="feat-card">
+      <i class="fas ${icon}"></i>
+      <h4>${title}</h4>
+      <p>${text}</p>
+    </div>`).join("");
+
+  const related = SERVICES.filter(s => s.slug !== slug).slice(0, 4);
+  document.getElementById("relGrid").innerHTML = related.map(r => `
+    <a href="${r.slug}.html" class="rel-card">
+      <i class="fas ${r.icon}"></i>
+      <h5>${r.name}</h5>
+    </a>`).join("");
+});
+</script>
+</body>
+</html>

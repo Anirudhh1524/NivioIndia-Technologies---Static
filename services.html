@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services — NivioIndia</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/extra.css">
+</head>
+<body data-depth="0">
+
+<div id="wa-slot"></div>
+<div id="nav-slot"></div>
+
+<section class="page-head">
+  <div class="wrap">
+    <h1>Our Services</h1>
+    <p>Ten specialised service lines, each staffed by engineers who own the outcome.</p>
+    <div class="crumbs"><a href="index.html">Home</a><span>/</span><span style="color:#fff;">Services</span></div>
+  </div>
+</section>
+
+<section class="svc-section">
+  <div class="wrap">
+    <div class="svc-grid" id="svcGrid"></div>
+  </div>
+</section>
+
+<section class="cta-strip">
+  <div class="wrap">
+    <div class="cta-inner">
+      <h3>Not sure which service fits? We'll help you figure it out.</h3>
+      <a href="contact.html" class="btn btn-fill">Talk to Us <i class="fas fa-arrow-right"></i></a>
+    </div>
+  </div>
+</section>
+
+<div id="footer-slot"></div>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("svcGrid").innerHTML = SERVICES.map((s, i) => `
+    <a href="services/${s.slug}.html" class="svc-card">
+      <span class="num">0${i + 1}</span>
+      <i class="fas ${s.icon}"></i>
+      <h4>${s.name}</h4>
+      <p>${s.summary}</p>
+      <span class="arrow"><i class="fas fa-arrow-up-right"></i></span>
+    </a>`).join("");
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projects We've Done | Nivio India</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ── Design tokens ────────────────────────────────────────── */
+:root{
+  --bg:#07090f;
+  --bg2:#0c0f1a;
+  --panel:#111828;
+  --panel2:#161e30;
+  --line:rgba(255,255,255,.08);
+  --line2:rgba(255,255,255,.14);
+  --txt:#e8ecf7;
+  --dim:#8a94b0;
+  --faint:#515c7a;
+  --red:#ff4d3d;
+  --red-d:rgba(255,77,61,.13);
+  --green:#2bd9a3;
+  --green-d:rgba(43,217,163,.13);
+  --blue:#4da3ff;
+  --blue-d:rgba(77,163,255,.12);
+  --amber:#f5b942;
+  --amber-d:rgba(245,185,66,.12);
+  --purple:#a78bfa;
+  --purple-d:rgba(167,139,250,.12);
+  --cyan:#22d3ee;
+  --cyan-d:rgba(34,211,238,.12);
+
+  --r:6px; --r-lg:14px;
+  --font-h:'Space Grotesk',sans-serif;
+  --font-b:'Inter',sans-serif;
+  --font-m:'JetBrains Mono',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--txt);font-family:var(--font-b);font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+h1,h2,h3,h4{font-family:var(--font-h);letter-spacing:-.02em}
+
+/* ── Grid BG ─ */
+.grid-bg{
+  background-image:
+    linear-gradient(var(--line) 1px,transparent 1px),
+    linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:52px 52px;
+}
+
+/* ── Container ─ */
+.wrap{max-width:1220px;margin:0 auto;padding:0 22px}
+
+/* ── NAV ─────────────────────────────────────────────────── */
+.nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(7,9,15,.88);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);
+}
+.nav-row{
+  display:flex;align-items:center;justify-content:space-between;
+  height:72px;gap:20px;
+}
+.logo{display:flex;align-items:center;gap:10px}
+.logo-name{font-family:var(--font-h);font-weight:700;font-size:19px}
+.logo-name span{color:var(--red)}
+.nav-links{display:flex;gap:4px}
+.nav-links a{
+  padding:10px 14px;font-size:14px;font-weight:500;
+  color:var(--dim);border-radius:var(--r);transition:.15s
+}
+.nav-links a:hover{color:var(--txt);background:var(--panel)}
+.nav-links a.active{color:var(--green)}
+.nav-cta{
+  background:var(--red);color:#fff;font-family:var(--font-m);
+  font-size:12.5px;letter-spacing:.03em;text-transform:uppercase;
+  padding:11px 22px;border-radius:var(--r);font-weight:500;
+  transition:.15s;white-space:nowrap
+}
+.nav-cta:hover{background:#ff6a5c;color:#fff}
+.ham{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px}
+.ham span{display:block;width:22px;height:2px;background:var(--txt);border-radius:2px}
+@media(max-width:860px){
+  .nav-links,.nav-cta{display:none}
+  .ham{display:flex}
+}
+
+/* ── PAGE HERO ──────────────────────────────────────────── */
+.hero{
+  padding:88px 0 72px;position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;top:-200px;right:-180px;
+  width:540px;height:540px;border-radius:50%;
+  background:radial-gradient(circle,rgba(77,163,255,.18) 0%,transparent 68%);
+  pointer-events:none
+}
+.hero::after{
+  content:'';position:absolute;bottom:-140px;left:-120px;
+  width:400px;height:400px;border-radius:50%;
+  background:radial-gradient(circle,rgba(43,217,163,.12) 0%,transparent 68%);
+  pointer-events:none
+}
+.hero .wrap{position:relative;z-index:1}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--font-m);font-size:11.5px;text-transform:uppercase;
+  letter-spacing:.1em;color:var(--green);margin-bottom:16px
+}
+.eyebrow::before{
+  content:'';width:7px;height:7px;border-radius:50%;
+  background:var(--green);box-shadow:0 0 0 4px var(--green-d)
+}
+.hero h1{
+  font-size:clamp(2rem,4.5vw,3.6rem);line-height:1.07;
+  max-width:760px;margin-bottom:18px
+}
+.hero h1 em{font-style:normal;color:var(--green)}
+.hero p.lead{
+  font-size:17px;color:var(--dim);max-width:620px;margin-bottom:36px
+}
+.tag-row{display:flex;flex-wrap:wrap;gap:10px}
+.tag{
+  font-family:var(--font-m);font-size:11.5px;
+  padding:8px 14px;border:1px solid var(--line2);border-radius:30px;
+  color:var(--dim)
+}
+
+/* ── LIVE STATS STRIP ────────────────────────────────────── */
+.stats-strip{
+  background:var(--panel);border-radius:var(--r-lg);
+  border:1px solid var(--line);padding:28px 32px;
+  display:grid;grid-template-columns:repeat(5,1fr);
+  gap:1px;background-clip:padding-box;
+  position:relative;z-index:2;margin-top:-1px
+}
+.stat{padding:10px 20px;border-right:1px solid var(--line)}
+.stat:last-child{border-right:none}
+.stat .num{
+  font-family:var(--font-h);font-size:2rem;font-weight:700;
+  color:var(--txt);display:block
+}
+.stat .num.c-green{color:var(--green)}
+.stat .num.c-blue{color:var(--blue)}
+.stat .num.c-red{color:var(--red)}
+.stat .num.c-amber{color:var(--amber)}
+.stat label{
+  font-family:var(--font-m);font-size:10.5px;text-transform:uppercase;
+  letter-spacing:.07em;color:var(--faint)
+}
+.live-pill{
+  position:absolute;top:-11px;right:24px;
+  display:flex;align-items:center;gap:7px;
+  background:var(--panel);border:1px solid var(--line);
+  padding:5px 14px;border-radius:30px;
+  font-family:var(--font-m);font-size:10.5px;color:var(--green)
+}
+.live-pill::before{
+  content:'';width:6px;height:6px;border-radius:50%;
+  background:var(--green);animation:blink 1.5s infinite
+}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+@media(max-width:800px){.stats-strip{grid-template-columns:repeat(2,1fr)}.stat{padding:12px 14px}.stat:nth-child(2n){border-right:none}}
+@media(max-width:480px){.stats-strip{grid-template-columns:1fr}}
+
+/* ── SECTION ─────────────────────────────────────────────── */
+.section{padding:90px 0}
+.section.tight{padding:64px 0}
+.section-head{max-width:600px;margin-bottom:52px}
+.section-head.center{margin-left:auto;margin-right:auto;text-align:center}
+.section-head h2{font-size:clamp(1.6rem,2.8vw,2.4rem);margin-bottom:10px}
+
+/* ── CLIENT LOGO WALL (infinite marquee) ─────────────────── */
+.logo-wall{
+  background:var(--panel2);border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);padding:28px 0;overflow:hidden
+}
+.marquee-track{
+  display:flex;gap:0;width:max-content;
+  animation:scroll-left 28s linear infinite
+}
+.marquee-track:hover{animation-play-state:paused}
+@keyframes scroll-left{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.client-logo-item{
+  display:flex;align-items:center;justify-content:center;
+  padding:0 40px;flex-shrink:0;height:54px;
+}
+.client-logo-item .logo-badge{
+  font-family:var(--font-h);font-weight:700;font-size:15px;
+  color:var(--faint);letter-spacing:-.01em;
+  white-space:nowrap;transition:color .2s ease;
+  display:flex;align-items:center;gap:8px
+}
+.client-logo-item:hover .logo-badge{color:var(--txt)}
+.client-logo-item .logo-badge .dot{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--line2);flex-shrink:0
+}
+.divider{width:1px;height:32px;background:var(--line);flex-shrink:0}
+
+/* ── FILTER TABS ─────────────────────────────────────────── */
+.filter-bar{
+  display:flex;flex-wrap:wrap;gap:8px;margin-bottom:44px
+}
+.filter-btn{
+  font-family:var(--font-m);font-size:12px;text-transform:uppercase;
+  letter-spacing:.05em;padding:10px 18px;border-radius:30px;
+  border:1px solid var(--line2);color:var(--dim);background:transparent;
+  cursor:pointer;transition:.15s ease
+}
+.filter-btn:hover{border-color:var(--green);color:var(--green)}
+.filter-btn.active{
+  background:var(--green);border-color:var(--green);
+  color:#07090f;font-weight:700
+}
+
+/* ── PROJECT CARDS ───────────────────────────────────────── */
+.projects-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:20px
+}
+@media(max-width:960px){.projects-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:580px){.projects-grid{grid-template-columns:1fr}}
+
+.project-card{
+  background:var(--panel);border:1px solid var(--line);
+  border-radius:var(--r-lg);padding:24px;
+  transition:all .22s ease;position:relative;overflow:hidden;
+}
+.project-card::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,transparent 60%,rgba(255,255,255,.02));
+  pointer-events:none
+}
+.project-card:hover{
+  transform:translateY(-4px);border-color:var(--line2);
+  box-shadow:0 20px 48px rgba(0,0,0,.4)
+}
+.project-card.hidden{display:none}
+
+.card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:18px}
+.client-badge{
+  display:flex;align-items:center;gap:10px
+}
+.client-icon{
+  width:44px;height:44px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-h);font-weight:800;font-size:14px;
+  flex-shrink:0
+}
+.client-name{font-weight:700;font-size:14.5px;display:block}
+.client-industry{font-family:var(--font-m);font-size:10.5px;color:var(--faint);text-transform:uppercase;letter-spacing:.05em}
+
+.proj-tag{
+  font-family:var(--font-m);font-size:10.5px;padding:5px 11px;
+  border-radius:20px;white-space:nowrap;letter-spacing:.04em
+}
+
+.project-card h4{font-size:16px;margin-bottom:8px;line-height:1.3}
+.project-card p{font-size:13px;color:var(--dim);margin-bottom:16px}
+
+.meta-row{
+  display:flex;flex-wrap:wrap;gap:8px;
+  padding-top:14px;border-top:1px solid var(--line)
+}
+.meta-chip{
+  font-family:var(--font-m);font-size:10.5px;
+  padding:5px 10px;border-radius:6px;
+  background:var(--panel2);border:1px solid var(--line)
+}
+
+.outcome{
+  display:flex;align-items:center;gap:7px;margin-top:14px;
+  font-family:var(--font-m);font-size:11.5px;
+  color:var(--green)
+}
+.outcome::before{content:'↑';font-size:14px}
+
+/* colour schemes per client */
+.c-hcl{background:rgba(59,130,246,.15);color:#60a5fa}
+.c-cap{background:rgba(167,139,250,.15);color:var(--purple)}
+.c-tcs{background:rgba(43,217,163,.15);color:var(--green)}
+.c-bar{background:rgba(245,185,66,.15);color:var(--amber)}
+.c-tvh{background:rgba(255,77,61,.15);color:var(--red)}
+.c-ing{background:rgba(34,211,238,.15);color:var(--cyan)}
+.c-sta{background:rgba(249,115,22,.15);color:#fb923c}
+.c-mns{background:rgba(236,72,153,.15);color:#f472b6}
+.c-lav{background:rgba(16,185,129,.15);color:#34d399}
+.c-acc{background:rgba(234,179,8,.15);color:#fbbf24}
+
+.tag-server{background:var(--blue-d);color:var(--blue)}
+.tag-cloud{background:var(--green-d);color:var(--green)}
+.tag-net{background:var(--purple-d);color:var(--purple)}
+.tag-hw{background:var(--amber-d);color:var(--amber)}
+.tag-cyber{background:var(--red-d);color:var(--red)}
+.tag-devops{background:var(--cyan-d);color:var(--cyan)}
+.tag-dc{background:rgba(99,102,241,.13);color:#818cf8}
+.tag-support{background:rgba(251,146,60,.12);color:#fb923c}
+
+/* ── CLIENT SPOTLIGHT ────────────────────────────────────── */
+.spotlight-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+@media(max-width:700px){.spotlight-grid{grid-template-columns:1fr}}
+
+.spotlight-card{
+  background:var(--panel2);border:1px solid var(--line);
+  border-radius:var(--r-lg);padding:26px;display:flex;gap:20px;align-items:flex-start
+}
+.sp-icon{
+  width:52px;height:52px;border-radius:12px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-h);font-weight:800;font-size:15px
+}
+.sp-meta{font-family:var(--font-m);font-size:10.5px;color:var(--faint);text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px}
+.sp-num{font-family:var(--font-h);font-size:1.7rem;font-weight:700;line-height:1;margin-bottom:4px}
+.sp-label{font-size:12.5px;color:var(--dim)}
+
+/* ── TIMELINE ────────────────────────────────────────────── */
+.timeline{position:relative;padding-left:28px}
+.timeline::before{
+  content:'';position:absolute;left:7px;top:8px;bottom:8px;
+  width:1px;background:var(--line)
+}
+.tl-item{position:relative;margin-bottom:32px}
+.tl-item:last-child{margin-bottom:0}
+.tl-dot{
+  position:absolute;left:-25px;top:4px;
+  width:14px;height:14px;border-radius:50%;
+  border:2px solid var(--bg);flex-shrink:0
+}
+.tl-year{font-family:var(--font-m);font-size:11px;color:var(--faint);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+.tl-title{font-weight:700;font-size:14.5px;margin-bottom:4px}
+.tl-desc{font-size:13px;color:var(--dim)}
+
+/* ── CTA BAND ────────────────────────────────────────────── */
+.cta-band{
+  background:linear-gradient(135deg,var(--panel),var(--panel2));
+  border:1px solid var(--line);border-radius:var(--r-lg);
+  padding:52px;display:flex;justify-content:space-between;
+  align-items:center;gap:30px;flex-wrap:wrap
+}
+.cta-band h2{font-size:clamp(1.4rem,2.5vw,2rem);margin-bottom:6px}
+.cta-band p{margin-bottom:0;font-size:14.5px}
+.btn-main{
+  background:var(--red);color:#fff;
+  font-family:var(--font-m);font-size:13px;letter-spacing:.04em;
+  text-transform:uppercase;padding:14px 28px;border-radius:var(--r);
+  transition:.15s;white-space:nowrap
+}
+.btn-main:hover{background:#ff6a5c;color:#fff;transform:translateY(-1px)}
+
+/* ── REVEAL ─ */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease}
+.reveal.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<!-- ╔═══════════════════════════════════════════════════════╗
+     ║  NAV                                                  ║
+     ╚═══════════════════════════════════════════════════════╝ -->
+<header class="nav">
+  <div class="wrap nav-row">
+
+    <!-- SVG Nivio logo mark inline -->
+    <div class="logo">
+      <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="38" height="38" rx="8" fill="#0c0f1a"/>
+        <!-- leaf left -->
+        <path d="M14 26 C10 22 9 15 14 10 C14 10 16 18 20 20 Z" fill="#d4d8e4" opacity=".8"/>
+        <!-- leaf right -->
+        <path d="M24 26 C28 22 29 15 24 10 C24 10 22 18 18 20 Z" fill="#d4d8e4" opacity=".8"/>
+        <!-- stem -->
+        <path d="M19 20 L19 28" stroke="#d4d8e4" stroke-width="1.8" stroke-linecap="round" opacity=".7"/>
+        <!-- red dot -->
+        <circle cx="19" cy="9" r="3" fill="#ff4d3d"/>
+        <!-- sweep arc -->
+        <path d="M8 24 Q19 32 30 24" stroke="#888ea0" stroke-width="1" fill="none" opacity=".4" stroke-linecap="round"/>
+      </svg>
+      <span class="logo-name">Nivio<span>India</span></span>
+    </div>
+
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about-us.html">About</a>
+      <a href="team.html">Team</a>
+      <a href="status.html">Status</a>
+      <a href="#clients" class="active">clients</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a href="contact-us.html" class="nav-cta">Get Support →</a>
+    <div class="ham" onclick="this.classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</header>
+
+<!-- ╔═══════════════════════════════════════════════════════╗
+     ║  HERO                                                 ║
+     ╚═══════════════════════════════════════════════════════╝ -->
+<section class="hero grid-bg">
+  <div class="wrap">
+    <div class="eyebrow">Our portfolio</div>
+    <h1>Projects We've<br><em>Done</em> — Built to Last</h1>
+    <p class="lead">From Fortune-500 server farms to startup cloud migrations — a track record of real infrastructure, real results, and zero downtime deliveries.</p>
+    <div class="tag-row">
+      <span class="tag">Server Administration</span>
+      <span class="tag">Cloud Support</span>
+      <span class="tag">Network Infrastructure</span>
+      <span class="tag">Hardware Deployment</span>
+      <span class="tag">Cybersecurity</span>
+      <span class="tag">Data Centre Operations</span>
+      <span class="tag">DevOps</span>
+      <span class="tag">Technical Support</span>
+    </div>
+  </div>
+</section>
+
+<!-- ╔═══════════════════════════════════════════════════════╗
+     ║  LIVE STATS STRIP                                     ║
+     ╚═══════════════════════════════════════════════════════╝ -->
+<div class="wrap" style="position:relative;margin-top:0;padding-top:0">
+  <div class="stats-strip reveal">
+    <div class="live-pill">Live metrics</div>
+    <div class="stat">
+      <span class="num c-green" data-counter="47">0</span>
+      <label>Total projects delivered</label>
+    </div>
+    <div class="stat">
+      <span class="num c-blue" data-counter="10">0</span>
+      <label>Enterprise clients served</label>
+    </div>
+    <div class="stat">
+      <span class="num c-green">99.9<small style="font-size:1.1rem">%</small></span>
+      <label>Uptime across all deployments</label>
+    </div>
+    <div class="stat">
+      <span class="num c-amber" data-counter="0">0 <small style="font-size:1rem">hr</small></span>
+      <label>Downtime incidents on record</label>
+    </div>
+    <div class="stat">
+      <span class="num c-red" data-counter="6">0</span>
+      <label>Disciplines delivered</label>
+    </div>
+  </div>
+</div>
+
+<!-- ╔═══════════════════════════════════════════════════════╗
+     ║  CLIENT LOGO MARQUEE                                  ║
+     ╚═══════════════════════════════════════════════════════╝ -->
+<div class="logo-wall" style="margin-top:52px">
+  <div class="marquee-track" id="marquee">
+    <!-- First copy -->
+    <div class="client-logo-item"><div class="logo-badge"><div class="dot"></div>HCL Technologies</div></div>
+    <div class="divider"></div>
+    <div class="client-logo-item"><div class="logo-badge"><div class="dot"></div>Capgemini</div></div>
+    <div class="divider"></div>
+    <div class="client-logo-item"><div class="logo-badge"><div class="dot"></div>TCS</div></div>
+    <div class="divider"></div>
+    <div class="client-logo-item"><div class="logo-badge"><div class="dot"></div>Barclays</div></div>
+    <div class="divider"></div>
+    <div class="client-logo-item"><div class="logo-badge"><div class="dot"></div>TVH</div></div>
+    <div class="divider"></div>
+    <div class="client-logo-item"><div class="logo-badge"><div class="dot"></div>Ingram Micro</div></div>
+    <div class="divider"></div>
+    <div class="client-logo-item"><div class="logo-badge"><div class="dot"></div>Star Airlines</div></div>
+    <div class="divider"></div>
+    <div class="client-logo-item"><div class="logo-badge"><div class="dot"></div>Marks & Spencer</div></div>
+    <div class="divider"></div>
+    <div class="client-logo-item"><div class="logo-badge"><div class="dot"></div>Lavie</div></div>
+    <div class="divider"></div>
+    <div class="client-logo-item"><div class="logo-badge"><div class="dot"></div>Accessories</div></div>
+    <div class="divider"></div>
+    <!-- Second copy (seamless loop) -->
+    <div class="client-logo-item"><div class="logo-badge"><div class="dot"></div>HCL Technologies</div></div>
+    <div class="divider"></div>
+    <div class="client-logo-item"><div class="logo-badge"><div class="dot"></div>Capgemini</div></div>
+    <div class="divider"></div>
+    <div class="client-logo-item"><div class="logo-badge"><div class="dot"></div>TCS</div></div>
+    <div class="divider"></div>
+    <div class="client-logo-item"><div class="logo-badge"><div class="dot"></div>Barclays</div></div>
+    <div class="divider"></div>
+    <div class="client-logo-item"><div class="logo-badge"><div class="dot"></div>TVH</div></div>
+    <div class="divider"></div>
+    <div class="client-logo-item"><div class="logo-badge"><div class="dot"></div>Ingram Micro</div></div>
+    <div class="divider"></div>
+    <div class="client-logo-item"><div class="logo-badge"><div class="dot"></div>Star Airlines</div></div>
+    <div class="divider"></div>
+    <div class="client-logo-item"><div class="logo-badge"><div class="dot"></div>Marks & Spencer</div></div>
+    <div class="divider"></div>
+    <div class="client-logo-item"><div class="logo-badge"><div class="dot"></div>Lavie</div></div>
+    <div class="divider"></div>
+    <div class="client-logo-item"><div class="logo-badge"><div class="dot"></div>Accessories</div></div>
+  </div>
+</div>
+
+<!-- ╔═══════════════════════════════════════════════════════╗
+     ║  CLIENT SPOTLIGHT CARDS (big numbers)                 ║
+     ╚═══════════════════════════════════════════════════════╝ -->
+<section class="section tight" id="spotlights">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">By the numbers</div>
+      <h2>Impact across every client</h2>
+      <p style="color:var(--dim);font-size:14.5px;margin-top:8px">Key outcomes from our longest-standing partnerships — infrastructure that's still running strong.</p>
+    </div>
+    <div class="spotlight-grid reveal">
+
+      <div class="spotlight-card">
+        <div class="sp-icon c-hcl">H</div>
+        <div>
+          <div class="sp-meta">HCL Technologies</div>
+          <div class="sp-num c-blue" data-counter="12">0</div>
+          <div class="sp-label">Server nodes administered across 3 data centre zones over 18 months</div>
+        </div>
+      </div>
+
+      <div class="spotlight-card">
+        <div class="sp-icon c-cap">C</div>
+        <div>
+          <div class="sp-meta">Capgemini</div>
+          <div class="sp-num c-purple" data-counter="8">0</div>
+          <div class="sp-label">Cloud workloads migrated to AWS with zero production downtime</div>
+        </div>
+      </div>
+
+      <div class="spotlight-card">
+        <div class="sp-icon c-tcs">T</div>
+        <div>
+          <div class="sp-meta">TCS</div>
+          <div class="sp-num c-green">99.98<small style="font-size:1rem">%</small></div>
+          <div class="sp-label">Network uptime maintained across campus-wide LAN/WAN refresh</div>
+        </div>
+      </div>
+
+      <div class="spotlight-card">
+        <div class="sp-icon c-bar">B</div>
+        <div>
+          <div class="sp-meta">Barclays</div>
+          <div class="sp-num c-amber" data-counter="100">0</div>
+          <div class="sp-label">Endpoint devices hardened and brought into compliance in under 6 weeks</div>
+        </div>
+      </div>
+
+      <div class="spotlight-card">
+        <div class="sp-icon c-tvh">V</div>
+        <div>
+          <div class="sp-meta">TVH</div>
+          <div class="sp-num c-red" data-counter="4">0</div>
+          <div class="sp-label">Data centre racks deployed with full structured cabling and labelling</div>
+        </div>
+      </div>
+
+      <div class="spotlight-card">
+        <div class="sp-icon c-ing">I</div>
+        <div>
+          <div class="sp-meta">Ingram Micro</div>
+          <div class="sp-num c-cyan" data-counter="3">0</div>
+          <div class="sp-label">Warehousing & distribution sites connected over dedicated SD-WAN</div>
+        </div>
+      </div>
+
+      <div class="spotlight-card">
+        <div class="sp-icon c-sta">✈</div>
+        <div>
+          <div class="sp-meta">Star Airlines</div>
+          <div class="sp-num c-amber" data-counter="24">0</div>
+          <div class="sp-label">Hours of managed backup-engineer coverage per day for critical ops</div>
+        </div>
+      </div>
+
+      <div class="spotlight-card">
+        <div class="sp-icon c-mns">M</div>
+        <div>
+          <div class="sp-meta">Marks &amp; Spencer</div>
+          <div class="sp-num c-mns" data-counter="35">0</div>
+          <div class="sp-label">Retail POS servers and network switches refreshed across India stores</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ╔═══════════════════════════════════════════════════════╗
+     ║  PROJECT CARDS (filterable grid)                      ║
+     ╚═══════════════════════════════════════════════════════╝ -->
+<section class="section" id="projects" style="background:var(--bg2);border-top:1px solid var(--line)">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <div class="eyebrow">Full project log</div>
+      <h2>Every project, every client</h2>
+      <p style="color:var(--dim);font-size:14.5px;margin-top:8px">Filter by discipline — or browse the full stack of what we've delivered.</p>
+    </div>
+
+    <!-- Filter bar -->
+    <div class="filter-bar reveal">
+      <button class="filter-btn active" data-filter="all">All Projects</button>
+      <button class="filter-btn" data-filter="server">Server Administration</button>
+      <button class="filter-btn" data-filter="cloud">Cloud Support</button>
+      <button class="filter-btn" data-filter="network">Networking</button>
+      <button class="filter-btn" data-filter="hardware">Hardware</button>
+      <button class="filter-btn" data-filter="cyber">Cybersecurity</button>
+      <button class="filter-btn" data-filter="devops">DevOps</button>
+      <button class="filter-btn" data-filter="dc">Data Centre</button>
+      <button class="filter-btn" data-filter="support">Tech Support</button>
+    </div>
+
+    <div class="projects-grid" id="projectsGrid">
+
+      <!-- ─── HCL ─── -->
+      <div class="project-card reveal" data-cats="server dc hardware">
+        <div class="card-top">
+          <div class="client-badge">
+            <div class="client-icon c-hcl">H</div>
+            <div>
+              <span class="client-name">HCL Technologies</span>
+              <span class="client-industry">IT Services · Enterprise</span>
+            </div>
+          </div>
+          <span class="proj-tag tag-server">Server</span>
+        </div>
+        <h4>Data Centre Server Administration — Bangalore Zone</h4>
+        <p>Full Windows Server 2019 and Linux (RHEL 8) administration for 12 production nodes across three server rooms. Handled patching schedules, Active Directory management, VMware cluster health, and daily backup verification.</p>
+        <div class="meta-row">
+          <span class="meta-chip">Windows Server</span>
+          <span class="meta-chip">RHEL 8</span>
+          <span class="meta-chip">VMware</span>
+          <span class="meta-chip">Active Directory</span>
+          <span class="meta-chip">Veeam</span>
+        </div>
+        <div class="outcome">Server uptime maintained at 99.97% over 18-month engagement</div>
+      </div>
+
+      <div class="project-card reveal" data-cats="hardware dc">
+        <div class="card-top">
+          <div class="client-badge">
+            <div class="client-icon c-hcl">H</div>
+            <div>
+              <span class="client-name">HCL Technologies</span>
+              <span class="client-industry">IT Services · Enterprise</span>
+            </div>
+          </div>
+          <span class="proj-tag tag-hw">Hardware</span>
+        </div>
+        <h4>Rack &amp; Stack — HCL Noida NOC Expansion</h4>
+        <p>Physical installation of 6 new server racks including UPS cabling, patch panel wiring, structured cabling with full labelling, and KVM over IP configuration for remote access readiness.</p>
+        <div class="meta-row">
+          <span class="meta-chip">Rack Installation</span>
+          <span class="meta-chip">Structured Cabling</span>
+          <span class="meta-chip">KVM over IP</span>
+          <span class="meta-chip">APC UPS</span>
+        </div>
+        <div class="outcome">All 6 racks live within 72-hour project window — zero re-work</div>
+      </div>
+
+      <div class="project-card reveal" data-cats="network">
+        <div class="card-top">
+          <div class="client-badge">
+            <div class="client-icon c-hcl">H</div>
+            <div>
+              <span class="client-name">HCL Technologies</span>
+              <span class="client-industry">IT Services · Enterprise</span>
+            </div>
+          </div>
+          <span class="proj-tag tag-net">Networking</span>
+        </div>
+        <h4>LAN Refresh &amp; VLAN Segmentation — Pune Campus</h4>
+        <p>Full campus LAN redesign across 3 floors: replaced aging 1GbE switches with 10GbE core, implemented VLAN segmentation for Dev, QA, and Corporate traffic, and deployed Cisco ISE for NAC.</p>
+        <div class="meta-row">
+          <span class="meta-chip">Cisco Catalyst</span>
+          <span class="meta-chip">VLAN Segmentation</span>
+          <span class="meta-chip">Cisco ISE</span>
+          <span class="meta-chip">OSPF</span>
+        </div>
+        <div class="outcome">Network throughput increased 4× with zero legacy outages during migration</div>
+      </div>
+
+      <!-- ─── CAPGEMINI ─── -->
+      <div class="project-card reveal" data-cats="cloud devops">
+        <div class="card-top">
+          <div class="client-badge">
+            <div class="client-icon c-cap">C</div>
+            <div>
+              <span class="client-name">Capgemini</span>
+              <span class="client-industry">Consulting · Global</span>
+            </div>
+          </div>
+          <span class="proj-tag tag-cloud">Cloud</span>
+        </div>
+        <h4>AWS Cloud Migration — 8 Workloads, Zero Downtime</h4>
+        <p>End-to-end lift-and-shift migration of 8 on-premise workloads to AWS (EC2, RDS, S3, CloudFront). Included VPC design, IAM hardening, CloudTrail audit logging, and cost-optimisation review.</p>
+        <div class="meta-row">
+          <span class="meta-chip">AWS EC2</span>
+          <span class="meta-chip">AWS RDS</span>
+          <span class="meta-chip">IAM Hardening</span>
+          <span class="meta-chip">CloudTrail</span>
+          <span class="meta-chip">Terraform</span>
+        </div>
+        <div class="outcome">Monthly cloud spend reduced 28% via right-sizing and reserved instances</div>
+      </div>
+
+      <div class="project-card reveal" data-cats="devops cloud">
+        <div class="card-top">
+          <div class="client-badge">
+            <div class="client-icon c-cap">C</div>
+            <div>
+              <span class="client-name">Capgemini</span>
+              <span class="client-industry">Consulting · Global</span>
+            </div>
+          </div>
+          <span class="proj-tag tag-devops">DevOps</span>
+        </div>
+        <h4>CI/CD Pipeline Implementation — Internal Product Teams</h4>
+        <p>Set up GitHub Actions pipelines for 3 internal product teams: automated build → test → Docker image push → ECS deployment. Introduced branch protection rules and automated rollback triggers.</p>
+        <div class="meta-row">
+          <span class="meta-chip">GitHub Actions</span>
+          <span class="meta-chip">Docker</span>
+          <span class="meta-chip">AWS ECS</span>
+          <span class="meta-chip">Prometheus</span>
+          <span class="meta-chip">Grafana</span>
+        </div>
+        <div class="outcome">Deployment frequency improved 9× — manual release steps eliminated</div>
+      </div>
+
+      <div class="project-card reveal" data-cats="support server">
+        <div class="card-top">
+          <div class="client-badge">
+            <div class="client-icon c-cap">C</div>
+            <div>
+              <span class="client-name">Capgemini</span>
+              <span class="client-industry">Consulting · Global</span>
+            </div>
+          </div>
+          <span class="proj-tag tag-support">Tech Support</span>
+        </div>
+        <h4>Backup Engineer Placement — Hyderabad Delivery Centre</h4>
+        <p>Placed two trained backup engineers to cover shift gaps and attrition across the Hyderabad DC operations team. Engineers were fully briefed on environment-specific runbooks within 48 hours of deployment.</p>
+        <div class="meta-row">
+          <span class="meta-chip">Backup Engineering</span>
+          <span class="meta-chip">L2 Support</span>
+          <span class="meta-chip">ServiceNow</span>
+          <span class="meta-chip">Runbook Documentation</span>
+        </div>
+        <div class="outcome">SLA compliance held at 98.6% through 4-month coverage window</div>
+      </div>
+
+      <!-- ─── TCS ─── -->
+      <div class="project-card reveal" data-cats="network hardware">
+        <div class="card-top">
+          <div class="client-badge">
+            <div class="client-icon c-tcs">T</div>
+            <div>
+              <span class="client-name">TCS</span>
+              <span class="client-industry">IT Services · Enterprise</span>
+            </div>
+          </div>
+          <span class="proj-tag tag-net">Networking</span>
+        </div>
+        <h4>Campus WAN Refresh — TCS Mumbai BKC</h4>
+        <p>Replaced dual MPLS WAN links with an SD-WAN deployment (Fortinet) providing active-active failover across primary and backup ISP. Included BGP tuning, QoS for VoIP, and full topology documentation.</p>
+        <div class="meta-row">
+          <span class="meta-chip">Fortinet SD-WAN</span>
+          <span class="meta-chip">BGP</span>
+          <span class="meta-chip">QoS</span>
+          <span class="meta-chip">Dual ISP Failover</span>
+        </div>
+        <div class="outcome">WAN uptime reached 99.98% — previous best was 97.3% on MPLS</div>
+      </div>
+
+      <div class="project-card reveal" data-cats="server">
+        <div class="card-top">
+          <div class="client-badge">
+            <div class="client-icon c-tcs">T</div>
+            <div>
+              <span class="client-name">TCS</span>
+              <span class="client-industry">IT Services · Enterprise</span>
+            </div>
+          </div>
+          <span class="proj-tag tag-server">Server</span>
+        </div>
+        <h4>Linux Server Fleet Hardening — CIS Benchmark Alignment</h4>
+        <p>Hardened 22 Ubuntu and RHEL servers against CIS Level 2 benchmarks. Applied kernel parameter tuning, SSH key-only authentication, auditd configuration, and fail2ban policies across the fleet.</p>
+        <div class="meta-row">
+          <span class="meta-chip">Ubuntu 22 LTS</span>
+          <span class="meta-chip">RHEL 9</span>
+          <span class="meta-chip">CIS Benchmarks</span>
+          <span class="meta-chip">auditd</span>
+          <span class="meta-chip">fail2ban</span>
+        </div>
+        <div class="outcome">All 22 servers passed CIS compliance scan — zero critical findings</div>
+      </div>
+
+      <div class="project-card reveal" data-cats="support">
+        <div class="card-top">
+          <div class="client-badge">
+            <div class="client-icon c-tcs">T</div>
+            <div>
+              <span class="client-name">TCS</span>
+              <span class="client-industry">IT Services · Enterprise</span>
+            </div>
+          </div>
+          <span class="proj-tag tag-support">Tech Support</span>
+        </div>
+        <h4>24×7 L1/L2 Helpdesk — TCS Pune Campus</h4>
+        <p>Managed end-user helpdesk covering 600+ employees across 2 buildings: ticket triage, remote desktop support, hardware swap coordination, and onboarding/offboarding IT provisioning.</p>
+        <div class="meta-row">
+          <span class="meta-chip">Freshservice</span>
+          <span class="meta-chip">AnyDesk</span>
+          <span class="meta-chip">Intune MDM</span>
+          <span class="meta-chip">Asset Management</span>
+        </div>
+        <div class="outcome">First-contact resolution at 93% — avg. ticket response under 12 minutes</div>
+      </div>
+
+      <!-- ─── BARCLAYS ─── -->
+      <div class="project-card reveal" data-cats="cyber server">
+        <div class="card-top">
+          <div class="client-badge">
+            <div class="client-icon c-bar">B</div>
+            <div>
+              <span class="client-name">Barclays</span>
+              <span class="client-industry">Banking &amp; Finance</span>
+            </div>
+          </div>
+          <span class="proj-tag tag-cyber">Cybersecurity</span>
+        </div>
+        <h4>Endpoint Security Rollout — 100 Devices, 6 Weeks</h4>
+        <p>Deployed CrowdStrike Falcon across 100 Windows endpoints in Barclays India operations. Configured threat-detection policies aligned to PCI-DSS controls, tuned alert thresholds, and integrated with SIEM via syslog.</p>
+        <div class="meta-row">
+          <span class="meta-chip">CrowdStrike Falcon</span>
+          <span class="meta-chip">SIEM Integration</span>
+          <span class="meta-chip">PCI-DSS Controls</span>
+          <span class="meta-chip">Windows 11</span>
+        </div>
+        <div class="outcome">4 real threat events detected and contained during first 6-week window</div>
+      </div>
+
+      <div class="project-card reveal" data-cats="network cyber">
+        <div class="card-top">
+          <div class="client-badge">
+            <div class="client-icon c-bar">B</div>
+            <div>
+              <span class="client-name">Barclays</span>
+              <span class="client-industry">Banking &amp; Finance</span>
+            </div>
+          </div>
+          <span class="proj-tag tag-net">Networking</span>
+        </div>
+        <h4>Firewall Rule Audit &amp; VPN Hardening — Pune Office</h4>
+        <p>Complete firewall rule audit on Palo Alto NGFW — removed 140+ stale rules, documented active policy, segmented DMZ from internal LAN, and enforced MFA on all VPN connections via Duo.</p>
+        <div class="meta-row">
+          <span class="meta-chip">Palo Alto NGFW</span>
+          <span class="meta-chip">Duo MFA</span>
+          <span class="meta-chip">DMZ Segmentation</span>
+          <span class="meta-chip">Rule Audit</span>
+        </div>
+        <div class="outcome">Attack surface reduced significantly — 140 redundant firewall rules removed</div>
+      </div>
+
+      <div class="project-card reveal" data-cats="server cloud">
+        <div class="card-top">
+          <div class="client-badge">
+            <div class="client-icon c-bar">B</div>
+            <div>
+              <span class="client-name">Barclays</span>
+              <span class="client-industry">Banking &amp; Finance</span>
+            </div>
+          </div>
+          <span class="proj-tag tag-server">Server</span>
+        </div>
+        <h4>Backup &amp; DR Validation — Core Banking Systems</h4>
+        <p>Designed and ran quarterly DR drills for Barclays India's core banking support infrastructure. Validated backup integrity, measured RTO/RPO, documented gaps and delivered a remediated recovery playbook.</p>
+        <div class="meta-row">
+          <span class="meta-chip">Veeam B&amp;R</span>
+          <span class="meta-chip">DR Testing</span>
+          <span class="meta-chip">RTO/RPO Measurement</span>
+          <span class="meta-chip">Playbook Documentation</span>
+        </div>
+        <div class="outcome">RTO reduced from 6 hours to under 90 minutes across critical systems</div>
+      </div>
+
+      <!-- ─── TVH ─── -->
+      <div class="project-card reveal" data-cats="dc hardware">
+        <div class="card-top">
+          <div class="client-badge">
+            <div class="client-icon c-tvh">V</div>
+            <div>
+              <span class="client-name">TVH</span>
+              <span class="client-industry">Industrial Parts &amp; Logistics</span>
+            </div>
+          </div>
+          <span class="proj-tag tag-dc">Data Centre</span>
+        </div>
+        <h4>Data Centre Build-Out — 4 Racks, Pune Warehouse</h4>
+        <p>Greenfield data centre build for TVH India's Pune warehouse: 4 racks, APC precision cooling, structured cabling (Cat6A), fibre uplinks to core switch, PDU installation, environmental sensors, and full DCIM asset tagging.</p>
+        <div class="meta-row">
+          <span class="meta-chip">APC Cooling</span>
+          <span class="meta-chip">Cat6A Cabling</span>
+          <span class="meta-chip">PDU Installation</span>
+          <span class="meta-chip">DCIM Asset Tagging</span>
+          <span class="meta-chip">Environmental Sensors</span>
+        </div>
+        <div class="outcome">Fully operational DC delivered 4 days ahead of schedule</div>
+      </div>
+
+      <div class="project-card reveal" data-cats="network server">
+        <div class="card-top">
+          <div class="client-badge">
+            <div class="client-icon c-tvh">V</div>
+            <div>
+              <span class="client-name">TVH</span>
+              <span class="client-industry">Industrial Parts &amp; Logistics</span>
+            </div>
+          </div>
+          <span class="proj-tag tag-net">Networking</span>
+        </div>
+        <h4>Multi-Site WAN Connectivity — India Warehouse Network</h4>
+        <p>Designed and deployed WAN connectivity for 3 TVH India warehouse sites using dual-ISP failover with OSPF dynamic routing. Included QoS prioritisation for ERP and barcode scanner traffic.</p>
+        <div class="meta-row">
+          <span class="meta-chip">Dual-ISP Failover</span>
+          <span class="meta-chip">OSPF Routing</span>
+          <span class="meta-chip">QoS Policies</span>
+          <span class="meta-chip">MikroTik</span>
+        </div>
+        <div class="outcome">ERP transaction failures eliminated — WAN reliability at 99.96%</div>
+      </div>
+
+      <!-- ─── INGRAM MICRO ─── -->
+      <div class="project-card reveal" data-cats="cloud server">
+        <div class="card-top">
+          <div class="client-badge">
+            <div class="client-icon c-ing">I</div>
+            <div>
+              <span class="client-name">Ingram Micro</span>
+              <span class="client-industry">Technology Distribution</span>
+            </div>
+          </div>
+          <span class="proj-tag tag-cloud">Cloud</span>
+        </div>
+        <h4>Azure Hybrid Cloud Setup — 3 Distribution Centres</h4>
+        <p>Implemented Azure Arc to bring 3 on-premise distribution centres under unified Azure management. Set up Azure Monitor dashboards, Log Analytics workspace, and automated patch management via Azure Policy.</p>
+        <div class="meta-row">
+          <span class="meta-chip">Azure Arc</span>
+          <span class="meta-chip">Azure Monitor</span>
+          <span class="meta-chip">Log Analytics</span>
+          <span class="meta-chip">Azure Policy</span>
+        </div>
+        <div class="outcome">Single pane of glass across 3 sites — patching compliance at 100%</div>
+      </div>
+
+      <div class="project-card reveal" data-cats="hardware support">
+        <div class="card-top">
+          <div class="client-badge">
+            <div class="client-icon c-ing">I</div>
+            <div>
+              <span class="client-name">Ingram Micro</span>
+              <span class="client-industry">Technology Distribution</span>
+            </div>
+          </div>
+          <span class="proj-tag tag-hw">Hardware</span>
+        </div>
+        <h4>Hardware Lifecycle Management — Pune Distribution Hub</h4>
+        <p>Audited, tagged, and documented all active hardware at Ingram Micro Pune. Identified end-of-life assets, coordinated vendor replacements, and set up a hardware refresh calendar for the next 3 years.</p>
+        <div class="meta-row">
+          <span class="meta-chip">Asset Audit</span>
+          <span class="meta-chip">EOL Management</span>
+          <span class="meta-chip">Vendor Coordination</span>
+          <span class="meta-chip">Refresh Planning</span>
+        </div>
+        <div class="outcome">23 EOL devices identified and replaced before first failure occurred</div>
+      </div>
+
+      <!-- ─── STAR AIRLINES ─── -->
+      <div class="project-card reveal" data-cats="support network">
+        <div class="card-top">
+          <div class="client-badge">
+            <div class="client-icon c-sta" style="font-size:18px">✈</div>
+            <div>
+              <span class="client-name">Star Airlines</span>
+              <span class="client-industry">Aviation &amp; Travel</span>
+            </div>
+          </div>
+          <span class="proj-tag tag-support">Tech Support</span>
+        </div>
+        <h4>24×7 Backup Engineer — Airport IT Operations</h4>
+        <p>Placed dedicated backup engineers for 24×7 shift coverage across airport IT operations: check-in kiosk uptime, boarding gate system support, network connectivity monitoring, and printer/peripheral management.</p>
+        <div class="meta-row">
+          <span class="meta-chip">Kiosk Maintenance</span>
+          <span class="meta-chip">Peripheral Support</span>
+          <span class="meta-chip">Shift Coverage</span>
+          <span class="meta-chip">Incident Response</span>
+        </div>
+        <div class="outcome">Zero check-in system outages during critical departure windows</div>
+      </div>
+
+      <div class="project-card reveal" data-cats="network server">
+        <div class="card-top">
+          <div class="client-badge">
+            <div class="client-icon c-sta" style="font-size:18px">✈</div>
+            <div>
+              <span class="client-name">Star Airlines</span>
+              <span class="client-industry">Aviation &amp; Travel</span>
+            </div>
+          </div>
+          <span class="proj-tag tag-net">Networking</span>
+        </div>
+        <h4>Airport Wi-Fi Infrastructure Overhaul — Terminal 2</h4>
+        <p>Replaced legacy Wi-Fi (802.11n) with enterprise Ubiquiti UniFi AX across Terminal 2. Separate SSIDs for passenger, operations and gate systems with WPA3 and captive portal for guest Wi-Fi.</p>
+        <div class="meta-row">
+          <span class="meta-chip">Ubiquiti UniFi AX</span>
+          <span class="meta-chip">WPA3</span>
+          <span class="meta-chip">Captive Portal</span>
+          <span class="meta-chip">SSID Segmentation</span>
+        </div>
+        <div class="outcome">Passenger Wi-Fi complaints dropped to near-zero post-deployment</div>
+      </div>
+
+      <!-- ─── MARKS & SPENCER ─── -->
+      <div class="project-card reveal" data-cats="hardware network support">
+        <div class="card-top">
+          <div class="client-badge">
+            <div class="client-icon c-mns">M</div>
+            <div>
+              <span class="client-name">Marks &amp; Spencer</span>
+              <span class="client-industry">Retail &amp; Fashion</span>
+            </div>
+          </div>
+          <span class="proj-tag tag-hw">Hardware</span>
+        </div>
+        <h4>POS &amp; Network Refresh — India Retail Stores</h4>
+        <p>Replaced point-of-sale terminals and network switches across 35 M&amp;S India stores. Each store received new Windows-based POS systems, a managed switch, and a dual-ISP failover router to protect transaction continuity.</p>
+        <div class="meta-row">
+          <span class="meta-chip">POS Deployment</span>
+          <span class="meta-chip">Managed Switches</span>
+          <span class="meta-chip">Dual-ISP Failover</span>
+          <span class="meta-chip">35 Locations</span>
+        </div>
+        <div class="outcome">POS transaction downtime eliminated across all 35 stores</div>
+      </div>
+
+      <div class="project-card reveal" data-cats="server cyber">
+        <div class="card-top">
+          <div class="client-badge">
+            <div class="client-icon c-mns">M</div>
+            <div>
+              <span class="client-name">Marks &amp; Spencer</span>
+              <span class="client-industry">Retail &amp; Fashion</span>
+            </div>
+          </div>
+          <span class="proj-tag tag-cyber">Cybersecurity</span>
+        </div>
+        <h4>PCI-DSS Readiness — Retail Payment Infrastructure</h4>
+        <p>Gap assessment and remediation for M&amp;S India's payment processing environment. Scoped cardholder data environment, applied network segmentation, patched vulnerabilities, and prepared evidence packs for the PCI-DSS QSA review.</p>
+        <div class="meta-row">
+          <span class="meta-chip">PCI-DSS</span>
+          <span class="meta-chip">CHD Scoping</span>
+          <span class="meta-chip">Vulnerability Remediation</span>
+          <span class="meta-chip">QSA Evidence Pack</span>
+        </div>
+        <div class="outcome">Achieved PCI-DSS compliance — QSA review passed on first submission</div>
+      </div>
+
+      <!-- ─── LAVIE ─── -->
+      <div class="project-card reveal" data-cats="server cloud">
+        <div class="card-top">
+          <div class="client-badge">
+            <div class="client-icon c-lav">L</div>
+            <div>
+              <span class="client-name">Lavie</span>
+              <span class="client-industry">Fashion &amp; Accessories</span>
+            </div>
+          </div>
+          <span class="proj-tag tag-cloud">Cloud</span>
+        </div>
+        <h4>E-commerce Cloud Infrastructure — AWS Deployment</h4>
+        <p>Built and launched AWS-hosted e-commerce infrastructure for Lavie: EC2 auto-scaling groups behind an ALB, RDS Multi-AZ for the product catalogue, S3 + CloudFront for product image delivery, and WAF rules for bot protection.</p>
+        <div class="meta-row">
+          <span class="meta-chip">AWS Auto Scaling</span>
+          <span class="meta-chip">RDS Multi-AZ</span>
+          <span class="meta-chip">CloudFront CDN</span>
+          <span class="meta-chip">AWS WAF</span>
+        </div>
+        <div class="outcome">Platform handled 4× traffic spike during sale event with zero degradation</div>
+      </div>
+
+      <div class="project-card reveal" data-cats="support hardware">
+        <div class="card-top">
+          <div class="client-badge">
+            <div class="client-icon c-lav">L</div>
+            <div>
+              <span class="client-name">Lavie</span>
+              <span class="client-industry">Fashion &amp; Accessories</span>
+            </div>
+          </div>
+          <span class="proj-tag tag-support">Tech Support</span>
+        </div>
+        <h4>Retail IT Support — Store Operations &amp; Warehouse</h4>
+        <p>Monthly on-site support visits to Lavie retail stores and warehouse covering barcode scanner maintenance, handheld device OS updates, inventory system troubleshooting and staff IT training sessions.</p>
+        <div class="meta-row">
+          <span class="meta-chip">Barcode Scanners</span>
+          <span class="meta-chip">Handheld MDM</span>
+          <span class="meta-chip">Inventory Systems</span>
+          <span class="meta-chip">Staff IT Training</span>
+        </div>
+        <div class="outcome">Device downtime during peak retail hours reduced by 80%</div>
+      </div>
+
+      <!-- ─── ACCESSORIES ─── -->
+      <div class="project-card reveal" data-cats="server network hardware">
+        <div class="card-top">
+          <div class="client-badge">
+            <div class="client-icon c-acc">A</div>
+            <div>
+              <span class="client-name">Accessories</span>
+              <span class="client-industry">Retail &amp; Consumer Goods</span>
+            </div>
+          </div>
+          <span class="proj-tag tag-server">Server</span>
+        </div>
+        <h4>On-Premise Server Setup &amp; ERP Integration</h4>
+        <p>Commissioned a Windows Server 2022 Hyper-V host for Accessories' ERP system, configured SQL Server with AlwaysOn AG for HA, set up network storage (NAS), and integrated with the retail POS for real-time inventory sync.</p>
+        <div class="meta-row">
+          <span class="meta-chip">Windows Server 2022</span>
+          <span class="meta-chip">Hyper-V</span>
+          <span class="meta-chip">SQL AlwaysOn AG</span>
+          <span class="meta-chip">NAS Storage</span>
+          <span class="meta-chip">ERP Integration</span>
+        </div>
+        <div class="outcome">ERP availability reached 99.9% — previous system averaged 94%</div>
+      </div>
+
+      <div class="project-card reveal" data-cats="network support">
+        <div class="card-top">
+          <div class="client-badge">
+            <div class="client-icon c-acc">A</div>
+            <div>
+              <span class="client-name">Accessories</span>
+              <span class="client-industry">Retail &amp; Consumer Goods</span>
+            </div>
+          </div>
+          <span class="proj-tag tag-net">Networking</span>
+        </div>
+        <h4>Store &amp; HQ Network Consolidation</h4>
+        <p>Consolidated disparate store networks under a single SD-WAN policy managed from HQ. Replaced consumer routers in 8 stores with enterprise-grade Sophos XGS appliances, applied uniform firewall policies, and enabled centralised logging.</p>
+        <div class="meta-row">
+          <span class="meta-chip">Sophos XGS</span>
+          <span class="meta-chip">SD-WAN Policy</span>
+          <span class="meta-chip">Centralised Logging</span>
+          <span class="meta-chip">8 Store Locations</span>
+        </div>
+        <div class="outcome">IT admin overhead cut by 60% — all 8 stores managed from one console</div>
+      </div>
+
+      <div class="project-card reveal" data-cats="devops cloud">
+        <div class="card-top">
+          <div class="client-badge">
+            <div class="client-icon c-acc">A</div>
+            <div>
+              <span class="client-name">Accessories</span>
+              <span class="client-industry">Retail &amp; Consumer Goods</span>
+            </div>
+          </div>
+          <span class="proj-tag tag-devops">DevOps</span>
+        </div>
+        <h4>Automated Backup &amp; Monitoring Pipeline</h4>
+        <p>Built an automated backup orchestration pipeline using Ansible: nightly ERP database dumps to Azure Blob, weekly server snapshot rotation, daily health checks with Zabbix, and email + SMS alerts on threshold breaches.</p>
+        <div class="meta-row">
+          <span class="meta-chip">Ansible</span>
+          <span class="meta-chip">Azure Blob Storage</span>
+          <span class="meta-chip">Zabbix</span>
+          <span class="meta-chip">SMS Alerting</span>
+        </div>
+        <div class="outcome">First successful automated restore validated within week 1 of deployment</div>
+      </div>
+
+    </div><!-- /projects-grid -->
+  </div>
+</section>
+
+<!-- ╔═══════════════════════════════════════════════════════╗
+     ║  TIMELINE — our journey                               ║
+     ╚═══════════════════════════════════════════════════════╝ -->
+<section class="section" style="background:var(--bg);border-top:1px solid var(--line)">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Our journey</div>
+      <h2>A decade of building infrastructure</h2>
+      <p style="color:var(--dim);font-size:14px;margin-top:8px">From first project to trusted partner for 10+ enterprise brands.</p>
+    </div>
+    <div class="timeline reveal">
+      <div class="tl-item">
+        <div class="tl-dot" style="background:var(--red)"></div>
+        <div class="tl-year">2014</div>
+        <div class="tl-title">Founded in Kothrud, Pune</div>
+        <div class="tl-desc">Started as a 2-person team providing on-site server and networking support to local SMEs in Pune.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot" style="background:var(--blue)"></div>
+        <div class="tl-year">2016</div>
+        <div class="tl-title">First enterprise client — TCS</div>
+        <div class="tl-desc">Delivered a campus LAN refresh for TCS Pune, our first Fortune-500 engagement. Set the template for how we handle large-scale network projects.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot" style="background:var(--green)"></div>
+        <div class="tl-year">2018</div>
+        <div class="tl-title">Cloud practice launched</div>
+        <div class="tl-desc">Added AWS and Azure cloud support to the practice — first major cloud engagement was the Capgemini workload migration.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot" style="background:var(--amber)"></div>
+        <div class="tl-year">2020</div>
+        <div class="tl-title">Pandemic response — remote infrastructure management</div>
+        <div class="tl-desc">Helped 8 clients stand up VPN, remote access and secure WFH infrastructure within 2 weeks of lockdown announcement.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot" style="background:var(--purple)"></div>
+        <div class="tl-year">2022</div>
+        <div class="tl-title">Retail vertical expansion</div>
+        <div class="tl-desc">Signed Marks &amp; Spencer, Lavie and Accessories — expanding into retail IT, POS infrastructure and compliance-led security work.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot" style="background:var(--cyan)"></div>
+        <div class="tl-year">2024</div>
+        <div class="tl-title">10 enterprise clients, 47 projects delivered</div>
+        <div class="tl-desc">Crossed 10 enterprise client relationships including Barclays, Star Airlines and Ingram Micro — with zero major outage incidents across all live engagements.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ╔═══════════════════════════════════════════════════════╗
+     ║  CTA                                                  ║
+     ╚═══════════════════════════════════════════════════════╝ -->
+<section class="section tight" style="background:var(--bg2);border-top:1px solid var(--line)">
+  <div class="wrap">
+    <div class="cta-band reveal">
+      <div>
+        <h2>Want results like these for your business?</h2>
+        <p>Tell us about your infrastructure — we'll scope a plan and come back within 24 hours.</p>
+      </div>
+      <a href="contact-us.html" class="btn-main">Get a free consult →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ╔═══════════════════════════════════════════════════════╗
+     ║  FOOTER                                               ║
+     ╚═══════════════════════════════════════════════════════╝ -->
+<footer style="background:var(--bg);border-top:1px solid var(--line);padding:40px 0">
+  <div class="wrap" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px">
+    <div class="logo">
+      <svg width="28" height="28" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="38" height="38" rx="8" fill="#111828"/>
+        <path d="M14 26 C10 22 9 15 14 10 C14 10 16 18 20 20 Z" fill="#d4d8e4" opacity=".8"/>
+        <path d="M24 26 C28 22 29 15 24 10 C24 10 22 18 18 20 Z" fill="#d4d8e4" opacity=".8"/>
+        <circle cx="19" cy="9" r="3" fill="#ff4d3d"/>
+      </svg>
+      <span class="logo-name" style="font-size:16px">Nivio<span>India</span></span>
+    </div>
+    <div style="font-family:var(--font-m);font-size:11.5px;color:var(--faint)">
+      © 2025 Nivio Technologies Pvt. Ltd. · Lohia Jain IT Park, Kothrud, Pune · info@nivioindia.cloud
+    </div>
+  </div>
+</footer>
+
+<!-- WhatsApp bubble -->
+<a href="https://wa.me/919876543210" target="_blank"
+   style="position:fixed;right:22px;bottom:22px;z-index:200;width:52px;height:52px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(37,211,102,.4);">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+/* ── 1. COUNTER ANIMATION ─────────────────────────────── */
+(function(){
+  var els = document.querySelectorAll('[data-counter]');
+  if(!('IntersectionObserver' in window)){
+    els.forEach(function(e){ e.textContent = e.getAttribute('data-counter'); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(!entry.isIntersecting) return;
+      var el = entry.target;
+      var target = parseFloat(el.getAttribute('data-counter'));
+      var suffix = el.getAttribute('data-suffix')||'';
+      var dur = 1200, start = null;
+      function step(ts){
+        if(!start) start = ts;
+        var p = Math.min((ts-start)/dur,1);
+        var val = target*p;
+        el.textContent = (p<1 ? val.toFixed(target%1?1:0) : target)+suffix;
+        if(p<1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+      io.unobserve(el);
+    });
+  },{threshold:0.4});
+  els.forEach(function(e){ io.observe(e); });
+})();
+
+/* ── 2. SCROLL REVEAL ─────────────────────────────────── */
+(function(){
+  var els = document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){
+    els.forEach(function(e){ e.classList.add('in'); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  },{threshold:0.1});
+  els.forEach(function(e){ io.observe(e); });
+})();
+
+/* ── 3. PROJECT FILTER ────────────────────────────────── */
+(function(){
+  var btns = document.querySelectorAll('.filter-btn');
+  var cards = document.querySelectorAll('.project-card');
+  btns.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      btns.forEach(function(b){ b.classList.remove('active'); });
+      btn.classList.add('active');
+      var filter = btn.getAttribute('data-filter');
+      cards.forEach(function(card){
+        var cats = card.getAttribute('data-cats')||'';
+        if(filter==='all' || cats.split(' ').indexOf(filter)>-1){
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    });
+  });
+})();
+
+/* ── 4. LIVE STATS — uptime counter ticks ─────────────── */
+(function(){
+  var uptime = 99970; /* milliseconds simulated uptime in days */
+  var el = document.getElementById('opsUptime');
+  if(!el) return;
+  /* small random flicker to simulate live data */
+  setInterval(function(){
+    var v = (99.97 + (Math.random()*.03-.005)).toFixed(2);
+    el.textContent = v + '%';
+  }, 4000);
+})();
+</script>
+</body>
+</html>

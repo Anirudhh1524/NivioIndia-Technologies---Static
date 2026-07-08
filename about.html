@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us — NivioIndia</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/extra.css">
+</head>
+<body data-depth="0">
+
+<div id="wa-slot"></div>
+<div id="nav-slot"></div>
+
+<section class="page-head">
+  <div class="wrap">
+    <h1>About NivioIndia</h1>
+    <p>Engineering reliability into every system you run.</p>
+    <div class="crumbs"><a href="index.html">Home</a><span>/</span><span style="color:#fff;">About</span></div>
+  </div>
+</section>
+
+<section class="about-split">
+  <div class="wrap split-grid">
+    <div class="split-img">
+      <img src="assets/images/about-left-image.jpg" alt="About NivioIndia">
+      <div class="split-card"><div class="v">2022</div><div class="l">Founded In</div></div>
+    </div>
+    <div class="split-text">
+      <span class="eyebrow">Our Story</span>
+      <h2 class="h-section">Built by engineers who got tired of unaccountable IT vendors.</h2>
+      <p>NivioIndia Technologies started with a straightforward idea: businesses deserve technology partners who treat their systems like their own. No ticket queues that vanish into a black box, no rotating support staff who don't know your stack.</p>
+      <p>Today we place and manage engineers across network support, cloud, cybersecurity, infrastructure, and development — for companies in banking, healthcare, manufacturing, and beyond.</p>
+      <ul class="tick-list">
+        <li><i class="fas fa-check-circle"></i> Engineers matched to your specific stack and scale</li>
+        <li><i class="fas fa-check-circle"></i> Transparent reporting and real SLA accountability</li>
+        <li><i class="fas fa-check-circle"></i> Flexible engagement models — staffing, projects, or managed services</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="industry-strip">
+  <div class="wrap">
+    <div class="center" style="margin-bottom:36px;">
+      <span class="eyebrow">Where We Work</span>
+      <h2 class="h-section">Industries we serve</h2>
+    </div>
+    <div class="industry-row" id="industryRow"></div>
+  </div>
+</section>
+
+<section class="process">
+  <div class="wrap">
+    <span class="eyebrow">Our Values</span>
+    <h2 class="h-section" style="color: rgb(89, 119, 216);">What guides how we operate</h2>
+    <div class="proc-grid">
+      <div class="proc-step"><div class="pnum">01</div><h4>Accountability</h4><p>Every engagement has a named engineer and a measurable SLA — no anonymous support queues.</p></div>
+      <div class="proc-step"><div class="pnum">02</div><h4>Transparency</h4><p>You see what we see: tickets, uptime, and incident reports, in real time.</p></div>
+      <div class="proc-step"><div class="pnum">03</div><h4>Depth Over Breadth</h4><p>We hire specialists, not generalists spread across too many tools.</p></div>
+      <div class="proc-step"><div class="pnum">04</div><h4>Long-Term Thinking</h4><p>We build relationships measured in years, not single tickets closed.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-strip">
+  <div class="wrap">
+    <div class="cta-inner">
+      <h3>Want to see how we'd approach your systems?</h3>
+      <a href="contact.html" class="btn btn-fill">Contact Us <i class="fas fa-arrow-right"></i></a>
+    </div>
+  </div>
+</section>
+
+<div id="footer-slot"></div>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("industryRow").innerHTML = INDUSTRIES.map(i => `<span class="industry-pill">${i}</span>`).join("");
+});
+</script>
+</body>
+</html>

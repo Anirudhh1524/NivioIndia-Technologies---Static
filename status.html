@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>System Status — NivioIndia</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/extra.css">
+</head>
+<body data-depth="0">
+
+<div id="wa-slot"></div>
+<div id="nav-slot"></div>
+
+<section class="status-hero">
+  <div class="wrap">
+    <div>
+      <h1>Live Operations Status</h1>
+      <p style="color:rgba(255,255,255,.6);margin-top:8px;">Real-time view of monitored systems, response times, and service health.</p>
+    </div>
+    <div class="status-pill"><span class="dot"></span> All Systems Monitored — <span id="statusClock">--:--:--</span> IST</div>
+  </div>
+</section>
+
+<section class="status-grid-section">
+  <div class="wrap">
+
+    <div class="status-cards">
+      <div class="status-card">
+        <div class="sv" id="cardUptime">99.97%</div>
+        <div class="sl">Network Uptime</div>
+        <div class="strend good"><i class="fas fa-arrow-trend-up"></i> Within SLA</div>
+      </div>
+      <div class="status-card">
+        <div class="sv" id="cardTickets">--</div>
+        <div class="sl">Open Tickets</div>
+        <div class="strend good"><i class="fas fa-circle-check"></i> Being Triaged</div>
+      </div>
+      <div class="status-card">
+        <div class="sv" id="cardResponse">--</div>
+        <div class="sl">Avg First Response</div>
+        <div class="strend good"><i class="fas fa-bolt"></i> Faster than target</div>
+      </div>
+      <div class="status-card">
+        <div class="sv" id="cardEngineers">--</div>
+        <div class="sl">Engineers On Shift</div>
+        <div class="strend warn"><i class="fas fa-users"></i> Peak hours</div>
+      </div>
+    </div>
+
+    <div class="chart-card">
+      <h4>Average Response Time</h4>
+      <div class="sub">Live feed — minutes, last 30 intervals</div>
+      <canvas id="respChart" height="220"></canvas>
+    </div>
+
+    <div class="chart-card">
+      <h4>30-Day Uptime History</h4>
+      <div class="sub">Daily uptime percentage across all monitored services</div>
+      <div class="uptime-bars" id="uptimeBars"></div>
+    </div>
+
+    <div class="chart-card">
+      <h4>Service Health</h4>
+      <div class="sub">Current operational status by service line</div>
+      <div class="services-status" id="svcStatusList"></div>
+    </div>
+
+  </div>
+</section>
+
+<section class="cta-strip">
+  <div class="wrap">
+    <div class="cta-inner">
+      <h3>Want this level of visibility into your own systems?</h3>
+      <a href="contact.html" class="btn btn-fill">Talk to an Engineer <i class="fas fa-arrow-right"></i></a>
+    </div>
+  </div>
+</section>
+
+<div id="footer-slot"></div>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/status.js"></script>
+</body>
+</html>
