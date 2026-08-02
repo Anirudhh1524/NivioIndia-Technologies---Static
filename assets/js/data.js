@@ -8,10 +8,10 @@ const COMPANY = {
   legalName: "NivioIndia Technologies",
   tagline: "Engineering reliability into every system you run.",
   email: "info@nivioindia.com",
-  phone: "+91-7743800746",
-  whatsapp: "917743800746",
+  phone: "+91-9404896562",
+  whatsapp: "919404896562",
   address: "Lohia Jain IT Park, Kothrud, Pune, Maharashtra",
-  founded: 2022,
+  founded: 2025,
   socials: {
     facebook: "https://www.facebook.com/profile.php?id=61579499795230",
     twitter: "https://x.com/nivioindia_tech",
