@@ -61,7 +61,6 @@
           <li><a href="${page('about.html')}">About</a></li>
           <li><a href="${page('team.html')}">Team</a></li>
           <li><a href="${page('status.html')}">Status</a></li>
-          <li><a href="${page('clients.html')}">Our Clients</a></li>
           <li><a href="${page('contact.html')}" class="nav-cta">Get In Touch</a></li>
         </ul>
         <button class="search-trigger" id="searchTrigger" aria-label="Search">

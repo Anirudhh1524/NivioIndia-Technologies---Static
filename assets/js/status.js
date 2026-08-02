@@ -136,8 +136,9 @@
     renderUptimeBars();
     tickClock();
 
-    setInterval(refreshCards, 4000);
-    setInterval(tickChart, 2500);
+    setInterval(updateSnapshot, 20000);
+    setInterval(refreshCards, 30000);
+    setInterval(tickChart, 25000);
     setInterval(tickClock, 1000);
     window.addEventListener("resize", drawChart);
   }
