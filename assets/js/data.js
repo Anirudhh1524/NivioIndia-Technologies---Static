@@ -6,19 +6,11 @@ const COMPANY = {
   name: "<span style= 'color:orange;'>Nivio<span>India</span>",
   legalName: "Nivio Technologies",
   tagline: "Engineering reliability into every system you run.",
-<<<<<<< HEAD
-  email: "info@nivioindia.com",
+  email: "contact@nivioindia.com",
   phone: "+91-9404896562",
   whatsapp: "919404896562",
   address: "Lohia Jain IT Park, Kothrud, Pune, Maharashtra",
   founded: 2025,
-=======
-  email: "contact@nivioindia.cloud",
-  phone: "+91-9404896562",
-  whatsapp: "919404896265",
-  address: "Lohia Jain IT Park, Kothrud, Pune, Maharashtra",
-  founded: 2024,
->>>>>>> 257154c (data update)
   socials: {
     facebook: "https://www.facebook.com/profile.php?id=61579499795230",
     twitter: "https://x.com/nivioindia_tech",

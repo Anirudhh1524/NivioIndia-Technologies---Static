@@ -9,11 +9,49 @@
   function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
 
   // ---------------- Top status cards ----------------
+  // Cards tween smoothly from their current value to a new target instead of
+  // snapping instantly — reads like a system that's actually recalculating,
+  // not a number flickering randomly every tick.
+  const cardState = {
+    cardUptime:       { value: 99.95, format: (v) => v.toFixed(2) + "%" },
+    cardTickets:      { value: 12,    format: (v) => Math.round(v) + " open" },
+    cardResponse:     { value: 4,     format: (v) => Math.round(v) + " min" },
+    cardClosedTickets:{ value: 47,    format: (v) => Math.round(v) + " closed" },
+  };
+
+  function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+
+  function tweenCard(id, target, duration = 1400) {
+    const el = document.getElementById(id);
+    const state = cardState[id];
+    if (!el || !state) return;
+
+    const from = state.value;
+    const start = performance.now();
+    el.classList.add("sv-updating");
+
+    function step(now) {
+      const t = Math.min(1, (now - start) / duration);
+      const eased = easeOutCubic(t);
+      const current = from + (target - from) * eased;
+      el.textContent = state.format(current);
+      if (t < 1) {
+        requestAnimationFrame(step);
+      } else {
+        state.value = target;
+        el.classList.remove("sv-updating");
+      }
+    }
+    requestAnimationFrame(step);
+  }
+
   function refreshCards() {
-    document.getElementById("cardUptime").textContent = (99.90 + Math.random() * 0.09).toFixed(2) + "%";
-    document.getElementById("cardTickets").textContent = Math.round(rand(8, 22));
-    document.getElementById("cardResponse").textContent = Math.round(rand(2, 7)) + " min";
-    document.getElementById("cardEngineers").textContent = Math.round(rand(7, 14)) + " / 14";
+    // Small realistic jitter around each metric's true baseline, so the
+    // dashboard breathes without ever looking implausible.
+    tweenCard("cardUptime", 99.90 + Math.random() * 0.09);
+    tweenCard("cardTickets", Math.round(rand(9, 16)));
+    tweenCard("cardResponse", Math.round(rand(3, 6)));
+    tweenCard("cardClosedTickets", Math.round(rand(40, 55)));
   }
 
   // ---------------- Canvas line chart: response time over last 30 mins ----------------
@@ -128,6 +166,12 @@
     el.textContent = now.toLocaleTimeString("en-IN", { timeZone: "Asia/Kolkata", hour12: false });
   }
 
+  // Periodically re-check per-service status and the 30-day history bars.
+  function updateSnapshot() {
+    renderServiceStatus();
+    renderUptimeBars();
+  }
+
   function init() {
     if (!document.getElementById("respChart")) return;
     refreshCards();
@@ -136,9 +180,17 @@
     renderUptimeBars();
     tickClock();
 
-    setInterval(updateSnapshot, 20000);
-    setInterval(refreshCards, 30000);
-    setInterval(tickChart, 25000);
+    // Simulated data refreshes now happen on a random 30–60 second cadence.
+    const MIN_GAP = 30 * 1000;
+    const MAX_GAP = 60 * 1000;
+    function scheduleRandom(fn) {
+      const delay = MIN_GAP + Math.random() * (MAX_GAP - MIN_GAP);
+      setTimeout(() => { fn(); scheduleRandom(fn); }, delay);
+    }
+    scheduleRandom(updateSnapshot);
+    scheduleRandom(refreshCards);
+    scheduleRandom(tickChart);
+
     setInterval(tickClock, 1000);
     window.addEventListener("resize", drawChart);
   }

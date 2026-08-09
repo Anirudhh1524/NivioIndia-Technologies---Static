@@ -40,7 +40,7 @@
       <div class="live-row"><span class="label">Network Uptime</span><span class="val up" id="uptimeVal">99.97%</span></div>
       <div class="live-row"><span class="label">Active Support Tickets</span><span class="val" id="ticketsVal">--</span></div>
       <div class="live-row"><span class="label">Avg. First Response</span><span class="val" id="responseVal">--</span></div>
-      <div class="live-row"><span class="label">Engineers On Shift</span><span class="val" id="engineersVal">--</span></div>
+      <div class="live-row"><span class="label">Closed Tickets</span><span class="val" id="closedTicketsVal">--</span></div>
       <div class="ticker-bar"><div class="ticker-fill" id="loadBar" style="width:0%"></div></div>
       <div class="clock">
         <span>Pune, IN — <b id="liveClock">--:--:--</b></span>
@@ -201,17 +201,44 @@ document.addEventListener("DOMContentLoaded", () => {
   tickClock();
   setInterval(tickClock, 1000);
 
-  // Live ops panel jitter
+  // Live ops panel — tweens smoothly toward a new value on a random
+  // 5–10 minute cadence, matching the status page's live cards.
   function jitter(base, range) { return base + Math.floor((Math.random() - 0.5) * range); }
+  function easeOutCubicHome(t) { return 1 - Math.pow(1 - t, 3); }
+  const liveState = {
+    ticketsVal:      { value: 12,    format: (v) => Math.round(v) + " open" },
+    responseVal:     { value: 4,     format: (v) => Math.round(v) + " min" },
+    closedTicketsVal:{ value: 47,    format: (v) => Math.round(v) + " closed" },
+    uptimeVal:       { value: 99.95, format: (v) => v.toFixed(2) + "%" },
+  };
+  function tweenLive(id, target, duration = 1400) {
+    const el = document.getElementById(id);
+    const state = liveState[id];
+    if (!el || !state) return;
+    const from = state.value;
+    const start = performance.now();
+    function step(now) {
+      const t = Math.min(1, (now - start) / duration);
+      const current = from + (target - from) * easeOutCubicHome(t);
+      el.textContent = state.format(current);
+      if (t < 1) requestAnimationFrame(step);
+      else state.value = target;
+    }
+    requestAnimationFrame(step);
+  }
   function refreshLivePanel() {
-    document.getElementById("ticketsVal").textContent = jitter(14, 6) + " open";
-    document.getElementById("responseVal").textContent = jitter(4, 3) + " min";
-    document.getElementById("engineersVal").textContent = jitter(9, 4) + " / 14";
-    document.getElementById("uptimeVal").textContent = (99.90 + Math.random() * 0.09).toFixed(2) + "%";
+    tweenLive("ticketsVal", Math.round(jitter(14, 6)));
+    tweenLive("responseVal", Math.round(jitter(4, 3)));
+    tweenLive("closedTicketsVal", Math.round(jitter(47, 15)));
+    tweenLive("uptimeVal", 99.90 + Math.random() * 0.09);
     document.getElementById("loadBar").style.width = Math.max(20, Math.min(95, jitter(55, 30))) + "%";
   }
   refreshLivePanel();
-  setInterval(refreshLivePanel, 4000);
+  (function scheduleLiveRefresh() {
+    const MIN_GAP = 30 * 1000, MAX_GAP = 60 * 1000;
+    const delay = MIN_GAP + Math.random() * (MAX_GAP - MIN_GAP);
+    setTimeout(() => { refreshLivePanel(); scheduleLiveRefresh(); }, delay);
+  })();
 
   // Years counter
   (function () {
